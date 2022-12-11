@@ -1,6 +1,6 @@
 {
   "name": "ghost-imagekit-store",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "",
   "main": "dist/src/index.js",
   "scripts": {
@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "ghost-storage-base": "^1.0.0",
-    "got": "^12.5.3",
+    "got": "11.8.2",
     "imagekit": "^4.1.2"
   },
   "devDependencies": {

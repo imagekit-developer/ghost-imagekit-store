@@ -1,6 +1,6 @@
 import { readFile } from 'fs'
 import StorageBase from 'ghost-storage-base'
-import { got } from 'got'
+import got from 'got'
 import ImageKit from 'imagekit'
 import { join, parse } from 'path'
 
@@ -76,7 +76,7 @@ class Store extends StorageBase {
 
     async save(image: StorageBase.Image, targetDir?: string): Promise<string> {
         const folder = targetDir || this.getTargetDir(this.uploadOptions.folder)
-        const fileName = parse(this.getSanitizedFileName(image.name)).name;
+        const fileName = this.getSanitizedFileName(image.name);
 
         const file = await readFileAsync(image.path);
 
@@ -88,7 +88,9 @@ class Store extends StorageBase {
             tags: this.uploadOptions.tags
         })
 
-        return uploadResponse.url;
+        var result = new URL(uploadResponse.url)
+        result.searchParams.append("updatedAt", new Date().getTime().toString())
+        return result.toString()
     }
 
     serve() {
@@ -110,3 +112,4 @@ class Store extends StorageBase {
 }
 
 export default Store
+module.exports = Store
