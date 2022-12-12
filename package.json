@@ -1,6 +1,6 @@
 {
   "name": "ghost-imagekit-store",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "",
   "main": "dist/src/index.js",
   "scripts": {
@@ -13,10 +13,13 @@
   "dependencies": {
     "ghost-storage-base": "^1.0.0",
     "got": "11.8.2",
-    "imagekit": "^4.1.2"
+    "imagekit": "^4.1.2",
+    "node-static": "^0.7.11",
+    "serve-static": "^1.15.0"
   },
   "devDependencies": {
     "@types/ghost-storage-base": "^0.0.1",
+    "@types/node-static": "^0.7.7",
     "typescript": "^4.9.4"
   }
 }
