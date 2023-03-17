@@ -40,3 +40,10 @@ COPY --chown=node:node --from=imagekit $GHOST_INSTALL/node_modules/ghost-imageki
 RUN ls -la ./content/adapters/storage/imagekit
 CMD ["node", "current/index.js"]
 ```
+## Configuration
+- The `auth` property is necessary
+- The optional `upload` property contains Imagekit API [upload options](https://docs.imagekit.io/api-reference/upload-file-api)
+### Recommended configuration
+
+- `upload.folder = "my-blog"` allows to upload all your images into a specific directory instead of Imagekit media library root
+- `uploadOptions.tags = ["blog", "photography"]` if you want to add some taxonomy to your uploaded images
