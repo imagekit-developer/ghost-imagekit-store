@@ -21,3 +21,22 @@ mv node_modules/ghost-imagekit-store content/adapters/storage/imagekit
 ```
 
 - Done, go configure
+
+### Install on Docker
+
+Here's an example of using this adapter with a containerized Ghost:
+
+```Dockerfile
+FROM ghost:4-alpine as imagekit
+COPY package.json package.json
+COPY yarn.lock yarn.lock
+RUN yarn install
+RUN ls -la $GHOST_INSTALL/node_modules/ghost-imagekit-store/dist/src/index.js
+
+FROM ghost:4-alpine
+COPY content ./content/
+COPY --chown=node:node --from=imagekit $GHOST_INSTALL/node_modules $GHOST_INSTALL/node_modules
+COPY --chown=node:node --from=imagekit $GHOST_INSTALL/node_modules/ghost-imagekit-store/dist/src/index.js $GHOST_INSTALL/content/adapters/storage/imagekit/index.js
+RUN ls -la ./content/adapters/storage/imagekit
+CMD ["node", "current/index.js"]
+```
