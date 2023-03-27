@@ -1,0 +1,17 @@
+name: Node CI
+
+on: [push, pull_request]
+
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '16'
+      - run: yarn install
+      - run: npm ci
+      - run: yarn run test
