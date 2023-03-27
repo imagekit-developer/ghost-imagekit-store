@@ -41,6 +41,7 @@ RUN ls -la ./content/adapters/storage/imagekit
 CMD ["node", "current/index.js"]
 ```
 ## Configuration
+Check out [configuration.json.dist](configuration.json.dist) for a complete example.
 - The `auth` property is necessary
 - The optional `upload` property contains Imagekit API [upload options](https://docs.imagekit.io/api-reference/upload-file-api)
 ### Recommended configuration
