@@ -72,12 +72,16 @@ class Store extends StorageBase {
     async exists(fileName: string, targetDir?: string): Promise<boolean> {
         console.log("exists", fileName, targetDir)
         const filePath = stripLeadingSlash(join(targetDir || "", fileName));
+        try {
         const response = await got(new URL(filePath, this.urlEndpoint), {
             responseType: 'buffer',
             resolveBodyOnly: true
         })
-        if (response) return true
-        return false;
+        console.log("res",response)
+        return true
+        } catch {
+            return false;
+        }
     }
 
     async save(image: StorageBase.Image, targetDir?: string): Promise<string> {
