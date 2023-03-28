@@ -77,7 +77,6 @@ class Store extends StorageBase {
             responseType: 'buffer',
             resolveBodyOnly: true
         })
-        console.log("res",response)
         return true
         } catch {
             return false;
