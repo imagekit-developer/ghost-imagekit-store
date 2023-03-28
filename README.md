@@ -1,10 +1,10 @@
-# ghost-imagekit-store
-Ghost imagekit store
+# Ghost Imagekit Store
+A fully featured and deeply tested [Imagekit](https://imagekit.io/) [Ghost](https://github.com/TryGhost/Ghost) storage adapter.
 
 ### Features
 
-- Up to date with latest Ghost versions :rocket:
-- Image upload, existence check
+- Up to date with latest Ghost versions
+- Image upload, existence check, static serve
 - Ability to upload images into a specific directory
 - Ability to tag images
 
@@ -17,10 +17,10 @@ Ghost imagekit store
 
 ```bash
 yarn add ghost-imagekit-store
-mv node_modules/ghost-imagekit-store content/adapters/storage/imagekit
+cp node_modules/ghost-imagekit-store/dist/src/index.js content/adapters/storage/imagekit/
 ```
 
-- Done, go configure
+- Next change the config file of ghost. Make sure to set the content path right as well.
 
 ### Install on Docker
 
@@ -42,9 +42,9 @@ CMD ["node", "current/index.js"]
 ```
 ## Configuration
 Check out [configuration.json.dist](configuration.json.dist) for a complete example.
-- The `auth` property is necessary
-- The optional `upload` property contains Imagekit API [upload options](https://docs.imagekit.io/api-reference/upload-file-api)
+- The `auth` property is necessary and it includes `urlEndpoint`, `privateKey` and `publicKey` which can found in [developer options](https://imagekit.io/dashboard/developer/api-keys) in your Imagekit Dashboard.
+- The `upload` property contains optional fields `useUniqueFileName` (default value is false), `tags` and `folder` Imagekit API [upload options](https://docs.imagekit.io/api-reference/upload-file-api)
 ### Recommended configuration
 
-- `upload.folder = "my-blog"` allows to upload all your images into a specific directory instead of Imagekit media library root
-- `uploadOptions.tags = ["blog", "photography"]` if you want to add some taxonomy to your uploaded images
+- `uploadOptions.folder = "test"` allows to upload all your images into a specific directory instead of Imagekit media library root
+- `uploadOptions.tags = ["cat", "photo"]` if you want to add some tags to your uploaded images
