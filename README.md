@@ -21,10 +21,10 @@
 
 ```bash
 yarn add ghost-imagekit-store
-mv node_modules/ghost-imagekit-store/dist/src/index.js content/adapters/storage/imagekit
+cp node_modules/ghost-imagekit-store/dist/src/index.js content/adapters/storage/imagekit/
 ```
 
-- Configure Ghost.
+- Configure Ghost's config file.
 
 ### Install on Docker
 
@@ -45,7 +45,7 @@ RUN set -ex; \
     su-exec node ghost config storage.imagekit.uploadOptions.folder /ghost/blog;
 ```
 
-Make sure the content path is correctly set in the Ghost configuration as well:
+Make sure the content path is correctly set in the Ghost configuration:
 
 ```json
 "paths": {
