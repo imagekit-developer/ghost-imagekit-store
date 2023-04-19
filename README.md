@@ -53,6 +53,8 @@ Make sure the content path is correctly set in the Ghost configuration:
 }
 ```
 
+Ensure that the `GHOST_CONTENT` environment variable is set to the same value as that of `paths.contentPath` in your Ghost app.
+
 ## Configuration
 
 Check out [configuration.json.dist](./configuration.json.dist) for a complete example.

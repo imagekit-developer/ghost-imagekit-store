@@ -38,8 +38,7 @@ class Store extends StorageBase {
   private _imagekit: ImageKit;
 
   constructor(config: ImageKitStoreConfig) {
-    // @ts-ignore
-    super(config);
+    super();
 
     const { auth, uploadOptions = {}, enableDatedFolders = true } = config;
 
