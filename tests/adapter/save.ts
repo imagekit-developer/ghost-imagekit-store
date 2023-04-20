@@ -28,7 +28,7 @@ describe("save", function () {
 
   it("Should upload successfully with config parameters and tagetDir", async function () {
     const imagekitAdapter = new ImageKitAdapter(testConfig());
-    const response = await imagekitAdapter.save(image, "/");
+    const response = await imagekitAdapter.save(image, "/ghost/blog/");
 
     expect(
       response.includes("https://ik.imagekit.io/test/default-image")
@@ -39,7 +39,7 @@ describe("save", function () {
         file,
         fileName: "default-image.jpeg",
         useUniqueFileName: true,
-        folder: "/",
+        folder: "/ghost/blog/",
         tags: [],
       })
     ).to.equal(true);
