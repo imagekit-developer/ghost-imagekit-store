@@ -156,3 +156,4 @@ class Store extends StorageBase {
 }
 
 export default Store;
+module.exports = Store;
