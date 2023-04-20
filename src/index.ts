@@ -50,7 +50,10 @@ class Store extends StorageBase {
 
     const { useUniqueFileName = true, tags = [], folder = "/" } = uploadOptions;
 
-    this.enableDatedFolders = enableDatedFolders ?? true;
+    this.enableDatedFolders =
+      enableDatedFolders.toString() === "false" || enableDatedFolders === false
+        ? false
+        : true;
     this.urlEndpoint = urlEndpoint ?? "";
     this.privateKey = privateKey ?? "";
     this.publicKey = publicKey ?? "";
