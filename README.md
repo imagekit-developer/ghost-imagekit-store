@@ -57,7 +57,31 @@ Ensure that the `GHOST_CONTENT` environment variable is set to the same value as
 
 ## Configuration
 
-Check out [configuration.json.dist](./configuration.json.dist) for a complete example.
+Check out [configuration.json.dist](./configuration.json.dist) or below for a complete example.
+
+```json
+{
+    "storage": {
+        "active": "imagekit",
+        "imagekit": {
+            "enableDatedFolders": true,
+            "auth": {
+                "privateKey": "your-private-key",
+                "publicKey": "your-public-key",
+                "urlEndpoint": "https://ik.imagekit.io/your-imagekit-id"
+            },
+            "uploadOptions": {
+                "useUniqueFileName": false,
+                "folder": "/sample",
+                "tags": ["blog"]
+            }
+        }
+    },
+    "imageOptimization": {
+        "resize": false
+    }
+}
+```
 
 - Make sure [Ghost Image Optimization](https://ghost.org/docs/config/#image-optimisation) is disabled.
 - The optional `enableDatedFolders` setting allows uploading images into dated sub-directories (like the default Ghost Local Storage Adapter). It is `true` by default.
@@ -69,6 +93,10 @@ Check out [configuration.json.dist](./configuration.json.dist) for a complete ex
 - `uploadOptions.useUniqueFileName = true` Ghost's local storage adaptor handles duplicate file names automatically. When uploading a file to a location where a file with the same name already exists, ImageKit creates a new file version. In order to avoid this, `useUniqueFileName` can be set to `true`.
 - `uploadOptions.tags = ["travel", "discover"]` if you want to add associations of tags to your uploaded images.
 - `uploadOptions.folder = "/ghost/blog"` allows to upload all your images into a specific directory in your ImageKit media library. By default, files are uploaded to the root of media library.
+
+## ImageKit dashboard settings
+
+Ensure that `Restrict unsigned image URLs` settings is turned off in your [ImageKit account](https://imagekit.io/dashboard/settings/images). This is because the storage adapter does not fetch images that require [signed URLs](https://docs.imagekit.io/features/security/signed-urls).
 
 ## Development
 

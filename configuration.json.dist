@@ -8,7 +8,7 @@
                 "publicKey": "your-public-key",
                 "urlEndpoint": "https://ik.imagekit.io/your-imagekit-id"
             },
-            "uploadoptions": {
+            "uploadOptions": {
                 "useUniqueFileName": false,
                 "folder": "/sample",
                 "tags": ["blog"]

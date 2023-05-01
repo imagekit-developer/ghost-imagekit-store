@@ -34,4 +34,34 @@ describe("exists", function () {
 
     expect(exists).to.equals(false);
   });
+
+  it("Should return false if restrict unsigned image URLs setting is enabled in dashboard", async function () {
+    nock(`https://ik.imagekit.io`)
+      .get(
+        `/test/${mockNonExistentImage.targetDir}/${mockNonExistentImage.name}`
+      )
+      .reply(401);
+
+    const exists: boolean = await imagekitAdapter.exists(
+      mockNonExistentImage.name,
+      mockNonExistentImage.targetDir
+    );
+
+    expect(exists).to.equals(false);
+  });
+
+  it("Should return false if image is a private file", async function () {
+    nock(`https://ik.imagekit.io`)
+      .get(
+        `/test/${mockNonExistentImage.targetDir}/${mockNonExistentImage.name}`
+      )
+      .reply(403);
+
+    const exists: boolean = await imagekitAdapter.exists(
+      mockNonExistentImage.name,
+      mockNonExistentImage.targetDir
+    );
+
+    expect(exists).to.equals(false);
+  });
 });

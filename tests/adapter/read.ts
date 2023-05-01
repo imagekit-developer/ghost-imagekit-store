@@ -49,7 +49,47 @@ describe("read", function () {
       expect(err).to.be.an.instanceOf(ImageKitAdapterError);
       expect(err.statusCode).to.be.equal(404);
       expect(err.message).to.be.equal(
-        "Failed to read image from path '/test/default-image.jpg'"
+        "Failed to read image from path 'https://ik.imagekit.io/test/default-image.jpg'"
+      );
+    }
+
+    nock.restore();
+  });
+
+  it("Should return an error if restrict unsigned image URLs setting is enabled in dashboard", async function () {
+    nock("https://ik.imagekit.io").get("/test/default-image.jpg").reply(401);
+
+    const options = {
+      path: "https://ik.imagekit.io/test/default-image.jpg",
+    };
+
+    try {
+      await imagekitAdapter.read(options);
+    } catch (err) {
+      expect(err).to.be.an.instanceOf(ImageKitAdapterError);
+      expect(err.statusCode).to.be.equal(401);
+      expect(err.message).to.be.equal(
+        "Failed to read image from path 'https://ik.imagekit.io/test/default-image.jpg'"
+      );
+    }
+
+    nock.restore();
+  });
+
+  it("Should return an error if image is a private file", async function () {
+    nock("https://ik.imagekit.io").get("/test/default-image.jpg").reply(403);
+
+    const options = {
+      path: "https://ik.imagekit.io/test/default-image.jpg",
+    };
+
+    try {
+      await imagekitAdapter.read(options);
+    } catch (err) {
+      expect(err).to.be.an.instanceOf(ImageKitAdapterError);
+      expect(err.statusCode).to.be.equal(403);
+      expect(err.message).to.be.equal(
+        "Failed to read image from path 'https://ik.imagekit.io/test/default-image.jpg'"
       );
     }
 
