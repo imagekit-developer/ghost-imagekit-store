@@ -96,7 +96,7 @@ Check out [configuration.json.dist](./configuration.json.dist) or below for a co
 
 ## ImageKit dashboard settings
 
-Ensure that `Restrict unsigned image URLs` settings is turned off in your [ImageKit account](https://imagekit.io/dashboard/settings/images). This is because the storage adapter does not fetch images that require [signed URLs](https://docs.imagekit.io/features/security/signed-urls).
+Ensure that `Restrict unsigned image URLs` settings is turned off in your [ImageKit account](https://imagekit.io/dashboard/settings/images). This is because the storage adapter currently does not support fetching images that require [signed URLs](https://docs.imagekit.io/features/security/signed-urls), for example, private files.
 
 ## Development
 
