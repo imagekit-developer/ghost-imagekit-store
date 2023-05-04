@@ -1,0 +1,25 @@
+{
+    "reporter": [
+        "html",
+        "text",
+        "lcov",
+        "cobertura"
+    ],
+    "extension": [
+        ".ts"
+    ],
+    "all": false,
+    "instrument": true,
+    "sourceMap": true,
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "coverage/**",
+        "node_modules/**",
+        "tests/**/*.ts"
+    ],
+    "require": [
+        "ts-node/register"
+    ]
+}

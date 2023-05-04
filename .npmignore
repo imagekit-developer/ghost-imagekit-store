@@ -1,0 +1,9 @@
+.github
+.nyc_output
+coverage
+types
+tests
+.npmignore
+.mocharc.json
+.nycrc.json
+tsconfig.json
